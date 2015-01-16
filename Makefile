@@ -10,3 +10,9 @@ all:
 	ld -m elf_x86_64 -nodefaultlibs -T kernel64.ld -o kernel.elf entry64.o main.o -b binary initcode entryother
 
 
+clean:
+	rm -f initcode.o initcode.out initcode entryother.o entryother bootblockother.o entry64.o main.o kernel.elf *.d
+
+
+run:
+	qemu-system-x86_64 -kernel kernel.elf -vnc :1 -no-reboot -d int
